@@ -5,16 +5,16 @@
 
 class Todo_list {
 private:
-  int index = 0;
-  std::string todo = NULL;
+  int index;
+  std::string todo;
 
 public:
   Todo_list *next;
 
-  void print_all();
-  std::string get_todo(int index);
+  void printAll();
+  std::string getTodo(int index);
   void remove(int index);
-  void add_item(std::string todo);
-}
+  void addItem(std::string todo);
+};
 
 #endif //TODO_H
