@@ -6,19 +6,16 @@
 int main(int argc, char **argv)
 {
   
-  TodoList market_list = new TodoList;
+  TodoList market_list();
 
   std:string item = "Buy some tomato";
   std:string item2 = "Buy fried plantain";
   
-  todo_list.addItem(item);
-  todo_list.addItem(item2);
+  market_list.addItem(item);
+  market_list.addItem(item2);
 
-  todo_list.printAll();
+  market_list.printAll();
 
-  todo_list.remove(1);
-
-  delete list_item;
-  delete todo_list;
+  market_list.remove(1);
   
 }
