@@ -6,16 +6,17 @@
 class Todo_list {
 private:
   int index;
-  std::string todo;
+  std::string item;
 
 public:
   Todo_list *next;
 
-  Todo_list();
-  void printAll();
-  std::string getTodo(int index);
+  Todo_list(std::string &todo);
+  void printList();
+  void print();
+  std::string getItem(int index);
   void remove(int index);
-  void addItem(std::string &todo);
+  Todo_list addItem(std::string &todo);
 };
 
 #endif //TODO_H
