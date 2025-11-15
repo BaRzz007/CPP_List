@@ -4,19 +4,29 @@
 #include <string>
 
 class Todo_list {
-private:
-  int index;
-  std::string item;
+  private:
+    Todo_list_item *head;
+    int item_count;
 
-public:
-  Todo_list *next;
+  public:
+    Todo_list();
+    void printList();
+    std::string getItem(int index);
+    void remove(int index);
+    void remove(std::string &todoString)
+    Todo_list_item append(std::string &new_item);
+    Todo_list_item insert(std::string &new_item, int index);
+    Todo_list_item push(std::string &new_item);
+};
 
-  Todo_list(std::string &todo);
-  void printList();
-  void print();
-  std::string getItem(int index);
-  void remove(int index);
-  Todo_list addItem(std::string &todo);
+class Todo_list_item {
+  private:
+    std::string item;
+
+  public:
+    Todo_list_item *next;
+    int index;
+    void print();
 };
 
 #endif //TODO_H
