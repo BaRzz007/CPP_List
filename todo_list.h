@@ -24,6 +24,7 @@ class Todo_list_item {
     std::string item;
 
   public:
+    Todo_list_item(std::string &item_str);
     Todo_list_item *next;
     int index;
     void print();
