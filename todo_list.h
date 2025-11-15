@@ -11,7 +11,7 @@ class Todo_list {
   public:
     Todo_list();
     void printList();
-    std::string getItem(int index);
+    Todo_list_item getItem(int index);
     void remove(int index);
     void remove(std::string &todoString)
     Todo_list_item append(std::string &new_item);
