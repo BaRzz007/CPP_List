@@ -9,6 +9,10 @@ private:
   std::string todo;
 
 public:
+  Todo_list(){
+    index = 0;
+  }
+  
   Todo_list *next;
 
   void printAll();
