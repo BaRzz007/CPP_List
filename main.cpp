@@ -6,13 +6,10 @@
 int main(int argc, char **argv)
 {
   
-  TodoList market_list();
-
-  std:string item = "Buy some tomato";
-  std:string item2 = "Buy fried plantain";
+  Todo_list market_list();
   
-  market_list.addItem(item);
-  market_list.addItem(item2);
+  Todo_list_item item1 = market_list.addItem("Buy some tomato");
+  Todo_list_item item2 = market_list.addItem("Buy fried plantain");
 
   market_list.printAll();
 
