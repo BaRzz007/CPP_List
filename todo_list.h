@@ -5,10 +5,9 @@
 
 class Todo_list {
   private:
+    class Todo_list_item;
     Todo_list_item *head;
     int item_count;
-
-    class Todo_list_item;
 
   public:
     Todo_list();
