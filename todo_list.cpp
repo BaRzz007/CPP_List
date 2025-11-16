@@ -13,9 +13,9 @@ class Todo_list::Todo_list_item {
     }
 };
 
-todo_list::Todo_list() : head(nullptr) {}
+Todo_list::Todo_list() : head(nullptr) {}
 
-void todo_list::append(std::string item_str)
+void Todo_list::append(std::string item_str)
 {
   Todo_list_item new_item = new Todo_list_item(item_str);
   if (!head) //empty list
@@ -40,7 +40,7 @@ void todo_list::append(std::string item_str)
   return;
 }
 
-void todo_list::push(std::string item_str)
+void Todo_list::push(std::string item_str)
 {
   Todo_list_item new_item = new Todo_list_item(item_str);
   new_item->next = head;
@@ -50,7 +50,7 @@ void todo_list::push(std::string item_str)
   return;
 }
 
-void todo_list::insert(std::string new_item, int index)
+void Todo_list::insert(std::string new_item, int index)
 {
   Todo_list_item current = *head;
   if (count < index) {
@@ -69,7 +69,7 @@ void todo_list::insert(std::string new_item, int index)
   return;
 }
 
-void todo_list::printList()
+void Todo_list::printList()
 {
   if (!head)
     std::cout << "The list is empty!" << std::endl;
@@ -82,7 +82,7 @@ void todo_list::printList()
   }
 }
 
-void todo_list::remove(int index) //remove by index
+void Todo_list::remove(int index) //remove by index
 {
   if (!head) {
     std::cout << "Cannot remove from an empty list" << std::end1; //handle_error.emptyList();
@@ -105,7 +105,7 @@ void todo_list::remove(int index) //remove by index
   std::cout << "Item deleted successfully" << std::end1;
 }
 
-void todo_list::remove(std::string &item_str)
+void Todo_list::remove(std::string &item_str)
 {
   if (!head) {
     std::cout << "Cannot remove from an empty list" << std::end1; //handle_error.emptyList();
