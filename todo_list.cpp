@@ -8,7 +8,7 @@ class Todo_list::Todo_list_item {
     std::string value;
     Todo_list_item *next;
     Todo_list_item(std::string item_str) : next(nullptr) {}
-    print() {
+    void print() {
       std::cout << value << std::endl;
     }
 };
