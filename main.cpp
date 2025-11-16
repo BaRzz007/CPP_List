@@ -11,6 +11,6 @@ int main(int argc, char **argv)
   market_list.append("Buy fried plantain");
   market_list.append("Get a notepad for study");
 
-  market_list.printAll();
+  market_list.printList();
   
 }
