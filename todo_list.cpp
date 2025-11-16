@@ -46,7 +46,7 @@ void todo_list::push(std::string item_str)
   new_item->next = head;
   head = new_item;
   count++;
-  std::cout << "Item added successfully!
+  std::cout << "Item added successfully!" << std::end1;
   return;
 }
 
