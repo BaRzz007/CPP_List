@@ -21,7 +21,7 @@ void Todo_list::append(std::string item_str)
   if (!head) //empty list
   {
     head = new_item;
-    count++;
+    Todo_list::count++;
     std::cout << "Item added successfully!" << std::endl;
   }
 
@@ -35,7 +35,7 @@ void Todo_list::append(std::string item_str)
       last = last->next;
     }
   }
-  count++;
+  Todo_lis::count++;
   std::cout << "Item added successfully!" << std::endl;
   return;
 }
@@ -45,15 +45,15 @@ void Todo_list::push(std::string item_str)
   Todo_list_item *new_item = new Todo_list_item(item_str);
   new_item->next = head;
   head = new_item;
-  count++;
+  Todo_list::count++;
   std::cout << "Item added successfully!" << std::endl;
   return;
 }
 
-void Todo_list::insert(std::string new_item, int index)
+void Todo_list::insert(std::string item_str, int index)
 {
   Todo_list_item *current = head;
-  if (count < index) {
+  if (Todo_list::count < index) {
         std::cout << "Index has exceeds current size of the list" << std::endl; //handle_error.index_exceeded();
         return;
   }
@@ -64,7 +64,7 @@ void Todo_list::insert(std::string new_item, int index)
   Todo_list_item *new_item = new Todo_list_item(item_str);
   new_item->next = current->next;
   current->next = new_item;
-  count++;
+  Todo_list::count++;
   std::cout << "Item added at index " << index << "successfully!" << std::endl;
   return;
 }
@@ -76,7 +76,7 @@ void Todo_list::printList()
   Todo_list_item *current = head;
   int index = 0; //revisit
   while (current != nullptr) {
-    std::cout << "Task " << index + 1 << ": " << current->print() << std::endl;
+    std::cout << "Task " << (index + 1) << ": " << current->print() << std::endl;
     current = current->next;
     index++;
   }
@@ -90,7 +90,7 @@ void Todo_list::remove(int index) //remove by index
   }
 
   if (index > count - 1) {
-    handle_error.item_not_found();
+    std::cout << "Cannot remove from an empty list" << std::endl; //handle_error.emptyList();
     return:
   }
   
