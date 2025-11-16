@@ -9,7 +9,7 @@ class Todo_list::Todo_list_item {
     Todo_list_item *next;
     Todo_list_item(std::string item_str) : next(nullptr) {}
     print() {
-      std::cout << value << std::end1;
+      std::cout << value << std::endl;
     }
 };
 
@@ -22,7 +22,7 @@ void todo_list::append(std::string item_str)
   {
     head = new_item;
     count++;
-    std::cout << "Item added successfully!" << std::end1;
+    std::cout << "Item added successfully!" << std::endl;
   }
 
   Todo_list_item last = *head;
@@ -36,7 +36,7 @@ void todo_list::append(std::string item_str)
     }
   }
   count++;
-  std::cout << "Item added successfully!" << std::end1;
+  std::cout << "Item added successfully!" << std::endl;
   return;
 }
 
@@ -46,7 +46,7 @@ void todo_list::push(std::string item_str)
   new_item->next = head;
   head = new_item;
   count++;
-  std::cout << "Item added successfully!" << std::end1;
+  std::cout << "Item added successfully!" << std::endl;
   return;
 }
 
@@ -54,7 +54,7 @@ void todo_list::insert(std::string new_item, int index)
 {
   Todo_list_item current = *head;
   if (count < index) {
-        std::cout << "Index has exceeds current size of the list" << std::end1; //handle_error.index_exceeded();
+        std::cout << "Index has exceeds current size of the list" << std::endl; //handle_error.index_exceeded();
         return;
   }
   
@@ -65,18 +65,18 @@ void todo_list::insert(std::string new_item, int index)
   new_item->next = current->next;
   current->next = new_item;
   count++;
-  std::cout << "Item added at index " << index << "successfully!" << std::end1;
+  std::cout << "Item added at index " << index << "successfully!" << std::endl;
   return;
 }
 
 void todo_list::printList()
 {
   if (!head)
-    std::cout << "The list is empty!" << std::end1;
+    std::cout << "The list is empty!" << std::endl;
   Todo_list_item current = *head;
   int index = 0; //revisit
   while (current) {
-    std::cout << "Task " << index + 1 << ": " << current->print() << std::end1;
+    std::cout << "Task " << index + 1 << ": " << current->print() << std::endl;
     current = current->next;
     index++;
   }
