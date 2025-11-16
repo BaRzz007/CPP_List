@@ -17,7 +17,7 @@ Todo_list::Todo_list() : head(nullptr) {}
 
 void Todo_list::append(std::string item_str)
 {
-  Todo_list_item new_item = new Todo_list_item(item_str);
+  Todo_list_item *new_item = new Todo_list_item(item_str);
   if (!head) //empty list
   {
     head = new_item;
@@ -42,7 +42,7 @@ void Todo_list::append(std::string item_str)
 
 void Todo_list::push(std::string item_str)
 {
-  Todo_list_item new_item = new Todo_list_item(item_str);
+  Todo_list_item *new_item = new Todo_list_item(item_str);
   new_item->next = head;
   head = new_item;
   count++;
@@ -61,7 +61,7 @@ void Todo_list::insert(std::string new_item, int index)
   for (i = 0; i == index - 1; i++)
       current = current->next;
   
-  Todo_list_item new_item = new Todo_list_item(item_str);
+  Todo_list_item *new_item = new Todo_list_item(item_str);
   new_item->next = current->next;
   current->next = new_item;
   count++;
