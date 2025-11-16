@@ -69,7 +69,7 @@ void todo_list::insert(std::string new_item, int index)
   return;
 }
 
-void todo_list::printAll()
+void todo_list::printList()
 {
   if (!head)
     std::cout << "The list is empty!" << std::end1;
