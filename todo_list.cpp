@@ -26,7 +26,7 @@ void Todo_list::append(std::string item_str)
   }
 
   Todo_list_item last = *head;
-  while (last) {
+  while (last != nullptr) {
     if (!last->next) {
       last->next = new_item;
       break;
@@ -75,7 +75,7 @@ void Todo_list::printList()
     std::cout << "The list is empty!" << std::endl;
   Todo_list_item current = *head;
   int index = 0; //revisit
-  while (current) {
+  while (current != nullptr) {
     std::cout << "Task " << index + 1 << ": " << current->print() << std::endl;
     current = current->next;
     index++;
