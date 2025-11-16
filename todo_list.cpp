@@ -3,7 +3,7 @@
 #include "todo_list.hpp"
 
 
-class todo_list::Todo_list_item {
+class Todo_list::Todo_list_item {
   public:
     std::string value;
     Todo_list_item *next;
