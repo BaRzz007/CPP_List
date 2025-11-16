@@ -1,5 +1,5 @@
-#ifndef TODO_H
-#define TODO_H
+#ifndef TODO_LIST_H
+#define TODO_LIST_H
 
 #include <string>
 
@@ -7,6 +7,8 @@ class Todo_list {
   private:
     Todo_list_item *head;
     int item_count;
+
+    class Todo_list_item;
 
   public:
     Todo_list();
@@ -19,15 +21,6 @@ class Todo_list {
     Todo_list_item push(std::string &new_item);
 };
 
-class Todo_list_item {
-  private:
-    std::string item;
 
-  public:
-    Todo_list_item(std::string &item_str);
-    Todo_list_item *next;
-    int index;
-    void print();
-};
 
-#endif //TODO_H
+#endif //TODO_LIST_H
