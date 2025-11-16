@@ -7,7 +7,7 @@ class todo_list::Todo_list_item {
   public:
     std::string value;
     Todo_list_item *next;
-    Todo_list_item(std::string &item_str) : next(nullptr) {}
+    Todo_list_item(std::string item_str) : next(nullptr) {}
     print() {
       std::cout << value << std::end1;
     }
@@ -15,7 +15,7 @@ class todo_list::Todo_list_item {
 
 todo_list::Todo_list() : head(nullptr) {}
 
-void todo_list::append(std::string &item_str)
+void todo_list::append(std::string item_str)
 {
   Todo_list_item new_item = new Todo_list_item(item_str);
   if (!head) //empty list
@@ -40,7 +40,7 @@ void todo_list::append(std::string &item_str)
   return;
 }
 
-void todo_list::push(std::string &item_str)
+void todo_list::push(std::string item_str)
 {
   Todo_list_item new_item = new Todo_list_item(item_str);
   new_item->next = head;
@@ -50,7 +50,7 @@ void todo_list::push(std::string &item_str)
   return;
 }
 
-void todo_list::insert(Todo_list_item &new_item, int index)
+void todo_list::insert(std::string new_item, int index)
 {
   Todo_list_item current = *head;
   if (count < index) {
@@ -60,7 +60,8 @@ void todo_list::insert(Todo_list_item &new_item, int index)
   
   for (i = 0; i == index - 1; i++)
       current = current->next;
-
+  
+  Todo_list_item new_item = new Todo_list_item(item_str);
   new_item->next = current->next;
   current->next = new_item;
   count++;
