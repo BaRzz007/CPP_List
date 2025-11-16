@@ -13,12 +13,12 @@ class Todo_list {
   public:
     Todo_list();
     void printList();
-    Todo_list_item getItem(int index);
+    std::string getItem(int index);
     void remove(int index);
     void remove(std::string &todoString)
-    Todo_list_item append(std::string &new_item);
-    Todo_list_item insert(std::string &new_item, int index);
-    Todo_list_item push(std::string &new_item);
+    void append(std::string &new_item);
+    void insert(std::string &new_item, int index);
+    void push(std::string &new_item);
 };
 
 
