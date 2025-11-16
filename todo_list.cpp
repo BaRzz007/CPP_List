@@ -85,7 +85,7 @@ void Todo_list::printList()
 void Todo_list::remove(int index) //remove by index
 {
   if (!head) {
-    std::cout << "Cannot remove from an empty list" << std::end1; //handle_error.emptyList();
+    std::cout << "Cannot remove from an empty list" << std::endl; //handle_error.emptyList();
     return;
   }
 
@@ -102,13 +102,13 @@ void Todo_list::remove(int index) //remove by index
   }
   current->next = cureent->next->next;
   delete cureent->next; //garbage collection
-  std::cout << "Item deleted successfully" << std::end1;
+  std::cout << "Item deleted successfully" << std::endl;
 }
 
 void Todo_list::remove(std::string &item_str)
 {
   if (!head) {
-    std::cout << "Cannot remove from an empty list" << std::end1; //handle_error.emptyList();
+    std::cout << "Cannot remove from an empty list" << std::endl; //handle_error.emptyList();
     return;
   }
 
@@ -117,7 +117,7 @@ void Todo_list::remove(std::string &item_str)
     if (current->value == item_str) {
       
       delete current->next;
-      std::cout << "Item deleted successfully" << std::end1;
+      std::cout << "Item deleted successfully" << std::endl;
     }
   }
 }
