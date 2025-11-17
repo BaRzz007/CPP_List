@@ -7,13 +7,13 @@ class Todo_list::Todo_list_item {
   public:
     std::string value;
     Todo_list_item *next;
-    Todo_list_item(std::string item_str) : next(nullptr) {}
+    Todo_list_item(std::string item_str) : value(item_str), next(nullptr) {}
     std::string print() {
       return (this->value);
     }
 };
 
-Todo_list::Todo_list() : head(nullptr) {}
+Todo_list::Todo_list() : head(nullptr), count(0) {}
 
 void Todo_list::append(std::string item_str)
 {
@@ -23,18 +23,14 @@ void Todo_list::append(std::string item_str)
     head = new_item;
     Todo_list::count++;
     std::cout << "Item added successfully!" << std::endl;
+    return;
   }
 
   Todo_list_item *last = head;
-  while (last != nullptr) {
-    if (!last->next) {
-      last->next = new_item;
-      break;
-    }
-    else {
-      last = last->next;
-    }
+  while (last->next != nullptr) {
+    last = last->next;
   }
+  last->next = new_item;
   Todo_list::count++;
   std::cout << "Item added successfully!" << std::endl;
   return;
@@ -71,8 +67,10 @@ void Todo_list::insert(std::string item_str, int index)
 
 void Todo_list::printList()
 {
-  if (!head)
+  if (!head) {
     std::cout << "The list is empty!" << std::endl;
+    return;
+  }
   Todo_list_item *current = head;
   int index = 0; //revisit
   while (current != nullptr) {
