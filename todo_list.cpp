@@ -8,8 +8,8 @@ class Todo_list::Todo_list_item {
     std::string value;
     Todo_list_item *next;
     Todo_list_item(std::string item_str) : next(nullptr) {}
-    void print() {
-      std::cout << value << std::endl;
+    std::string print() {
+      return (this->value);
     }
 };
 
@@ -35,7 +35,7 @@ void Todo_list::append(std::string item_str)
       last = last->next;
     }
   }
-  Todo_lis::count++;
+  Todo_list::count++;
   std::cout << "Item added successfully!" << std::endl;
   return;
 }
@@ -58,13 +58,13 @@ void Todo_list::insert(std::string item_str, int index)
         return;
   }
   
-  for (i = 0; i == index - 1; i++)
+  for (int i = 0; i == index - 1; i++)
       current = current->next;
   
   Todo_list_item *new_item = new Todo_list_item(item_str);
   new_item->next = current->next;
   current->next = new_item;
-  Todo_list::count++;
+  count++;
   std::cout << "Item added at index " << index << "successfully!" << std::endl;
   return;
 }
@@ -90,18 +90,18 @@ void Todo_list::remove(int index) //remove by index
   }
 
   if (index > count - 1) {
-    std::cout << "Cannot remove from an empty list" << std::endl; //handle_error.emptyList();
-    return:
+	  std::cout << "item not found" << std::endl; //handle_error.item_not_found();
+    return;
   }
   
-  i = 0;
+  int i = 0;
   Todo_list_item *current = head;
   while (i < index) {
     current = current->next;
     i++;
   }
-  current->next = cureent->next->next;
-  delete cureent->next; //garbage collection
+  current->next = current->next->next;
+  delete current->next; //garbage collection
   std::cout << "Item deleted successfully" << std::endl;
 }
 
@@ -112,8 +112,8 @@ void Todo_list::remove(std::string &item_str)
     return;
   }
 
-  Todo_list_item current = *head;
-  while (current) {
+  Todo_list_item *current = head;
+  while (current != nullptr) {
     if (current->value == item_str) {
       
       delete current->next;
