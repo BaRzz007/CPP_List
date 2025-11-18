@@ -65,12 +65,12 @@ void Linked_list::push(std::string item_str)
 void Linked_list::insert(std::string item_str, int index)
 {
   Node *current = head;
-  if (Linked_list::count < index) {
+  if (count < index) {
         std::cout << "Index has exceeded current size of the list" << std::endl; //handle_error.index_exceeded();
         return;
   }
   
-  for (int i = 0; i == index; i++)
+  for (int i = 0; i > index - 1; i++)
       current = current->next;
   
   Node *new_item = new Node(item_str);
@@ -166,6 +166,7 @@ remove(): Done
 append(): Done
 clearList(): Done
 */
+
 
 
 
