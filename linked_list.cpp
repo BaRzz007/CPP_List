@@ -26,7 +26,8 @@ class Linked_list::Node {
  */
 
 //constructor to the linksed-list
-Linked_list::Linked_list() : head(nullptr), count(0) {}
+Linked_list::Linked_list() : head(new Node*(nullptr)), count(0) {}
+
 
 //This function adds a node to the end of the linked-list
 void Linked_list::append(std::string item_str)
@@ -70,10 +71,9 @@ void Linked_list::insert(std::string item_str, int index)
         return;
   }
   
-  for (int i = 0; i > index; i++)
+  for (int i = 0; i < index - 1; i++)
       current = current->next;
 
-  std::cout << current->print() << std::endl;
   Node *new_item = new Node(item_str);
   new_item->next = current->next;
   current->next = new_item;
@@ -111,14 +111,26 @@ void Linked_list::remove(int index)
 	  return;
   }
   
-  int i = 0;
   Node *current = *head;
-  while (i < index) {
+  Node *temp;
+
+  if (index == 0) {
+    temp = *head;
+    *head = (*head)->next;
+    delete temp;
+    count--;
+    std::cout << "Item deleted successfully" << std::endl;
+    return;
+  }
+
+  int i = 0;
+  while (i < index - 1) {
     current = current->next;
     i++;
   }
+  temp = current->next;
   current->next = current->next->next;
-  delete current->next; //garbage collection
+  delete temp; //garbage collection
 	count--;
   std::cout << "Item deleted successfully" << std::endl;
 }
@@ -132,11 +144,23 @@ void Linked_list::remove(std::string item_str)
   }
 
   Node *current = *head;
+  Node *prev = nullptr;
+
   while (current != nullptr) {
     if (current->value == item_str) {
-      delete current->next;
-			count--;
+      if (prev == nullptr) { // if the node to be deleted is the head
+        *head = current->next;
+      } else {
+        prev->next = current->next;
+      }
+      Node* temp = current;
+      delete temp;
+      count--;
       std::cout << "Item deleted successfully" << std::endl;
+      return; // Exit after deleting the first occurrence
+    } else {
+      prev = current;
+      current = current->next;
     }
   }
 }
@@ -155,6 +179,7 @@ void Linked_list::clearList()
 		delete temp;
 		count--;
 	}
+    *head = nullptr; // Set head to nullptr after deleting all nodes
 	std::cout << "The list is now cleared and empty" << std::endl;
 }
 
