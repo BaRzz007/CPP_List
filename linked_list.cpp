@@ -123,7 +123,7 @@ void Linked_list::remove(int index)
 }
 
 //This function removes an item by value from a linked list
-void Linked_list::remove(std::string &item_str)
+void Linked_list::remove(std::string item_str)
 {
   if (!head) {
     std::cout << "Cannot remove from an empty list" << std::endl; //handle_error.emptyList();
@@ -166,5 +166,6 @@ remove(): Done
 append(): Done
 clearList(): Done
 */
+
 
 
