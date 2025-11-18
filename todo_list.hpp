@@ -1,16 +1,16 @@
-#ifndef TODO_LIST_H
-#define TODO_LIST_H
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
 
 #include <string>
 
-class Todo_list {
+class Linked_list {
   private:
-    class Todo_list_item;
-    Todo_list_item *head;
+    class Node;
+    Node *head;
     int count;
 
   public:
-    Todo_list();
+    Linked_list();
     void printList();
     std::string getItem(int index);
     void remove(int index);
