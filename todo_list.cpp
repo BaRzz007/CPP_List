@@ -114,12 +114,27 @@ void Todo_list::remove(std::string &item_str)
   Todo_list_item *current = head;
   while (current != nullptr) {
     if (current->value == item_str) {
-      
       delete current->next;
 			Todo_list::count--;
       std::cout << "Item deleted successfully" << std::endl;
     }
   }
+}
+
+void Todo_list::clearList()
+{
+	if (!head) {
+		std::cout << "The list is already empty" << std::endl;
+	}
+	Todo_list_item *current = head;
+	Todo_list_item *temp;
+	while (current != nullptr) {
+		temp = current;
+		current = current->next;
+		delete temp;
+		Todo_list::count--;
+	}
+	std::cout << "The list is now cleared and empty" << std::endl;
 }
 
 /* #TODO:
