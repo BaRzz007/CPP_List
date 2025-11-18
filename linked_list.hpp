@@ -6,7 +6,7 @@
 class Linked_list {
   private:
     class Node;
-    Node *head;
+    Node **head;
     int count;
 
   public:
