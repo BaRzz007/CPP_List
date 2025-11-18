@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
-#include "todo_list.hpp"
+#include "linked_list.hpp"
 
 
 int main()
 {
-  Todo_list market_list; //creates new Linked-List
+  Linked_list market_list; //creates new Linked-List
   
   market_list.append("Buy some tomato"); //adds an item to the end of the list
   market_list.append("Buy fried plantain"); //adds an item to the end of the list
