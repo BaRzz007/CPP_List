@@ -11,14 +11,19 @@ int main()
   market_list.append("Buy fried plantain"); //adds an item to the end of the list
   market_list.append("Get a notepad for study"); //adds an item to the end of the list
   market_list.printList(); //see all the items in the list
+  std::cout << "" << std::endl;
 
   market_list.push("Priority: Restock on toiletories"); //adds an item to the beginning of the list
   market_list.printList();
+  std::cout << "" << std::endl;
 
   market_list.insert("Get a brown bag", 3); //adds an item to the middle of the list at index 3
   market_list.printList();
+  std::cout << "" << std::endl;
 
   market_list.remove(1); //remove node by index
+  market_list.printList();
+  std::cout << "" << std::endl;
   //market_list.remove("Buy some tomato"); //remove node by value
   market_list.clearList(); //clear the linked list
 
@@ -26,4 +31,5 @@ int main()
   
   return (0);
 }
+
 
