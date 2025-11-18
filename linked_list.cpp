@@ -134,7 +134,7 @@ void Linked_list::remove(std::string &item_str)
   while (current != nullptr) {
     if (current->value == item_str) {
       delete current->next;
-			Todo_list::count--;
+			count--;
       std::cout << "Item deleted successfully" << std::endl;
     }
   }
@@ -152,7 +152,7 @@ void Linked_list::clearList()
 		temp = current;
 		current = current->next;
 		delete temp;
-		Todo_list::count--;
+		count--;
 	}
 	std::cout << "The list is now cleared and empty" << std::endl;
 }
@@ -166,4 +166,5 @@ remove(): Done
 append(): Done
 clearList(): Done
 */
+
 
