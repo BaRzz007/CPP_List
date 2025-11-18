@@ -18,6 +18,7 @@ class Todo_list {
     void append(std::string new_item);
     void insert(std::string new_item, int index);
     void push(std::string new_item);
+    void clearList();
 };
 
 
