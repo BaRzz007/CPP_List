@@ -146,8 +146,8 @@ void Linked_list::clearList()
 	if (!head) {
 		std::cout << "The list is already empty" << std::endl;
 	}
-	Todo_list_item *current = head;
-	Todo_list_item *temp;
+	Node *current = head;
+	Node *temp;
 	while (current != nullptr) {
 		temp = current;
 		current = current->next;
@@ -166,3 +166,4 @@ remove(): Done
 append(): Done
 clearList(): Done
 */
+
