@@ -70,9 +70,10 @@ void Linked_list::insert(std::string item_str, int index)
         return;
   }
   
-  for (int i = 0; i > index - 1; i++)
+  for (int i = 0; i > index; i++)
       current = current->next;
-  
+
+	std::cout << current->print() << std::endl;
   Node *new_item = new Node(item_str);
   new_item->next = current->next;
   current->next = new_item;
@@ -166,6 +167,7 @@ remove(): Done
 append(): Done
 clearList(): Done
 */
+
 
 
 
