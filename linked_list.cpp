@@ -1,55 +1,71 @@
 #include <iostream>
 #include <string>
-#include "todo_list.hpp"
+#include "linked_list.hpp"
 
-
-class Todo_list::Todo_list_item {
+/** This is an internal Node class for the list items stored in the linked-list, thus encapsulating
+ *  its implementation.
+ *
+ *  Member variables of the node class are "value" and "next", which store the value
+ *  stored in the node and a pointer to the next node in the list.
+ */
+class Linked_list::Node {
   public:
     std::string value;
-    Todo_list_item *next;
-    Todo_list_item(std::string item_str) : value(item_str), next(nullptr) {}
+    Node *next;
+    Node(std::string item_str) : value(item_str), next(nullptr) {}
+//This function returns the value of the node as a string object
     std::string print() {
       return (this->value);
     }
 };
 
-Todo_list::Todo_list() : head(nullptr), count(0) {}
 
-void Todo_list::append(std::string item_str)
+
+/** This is where the definition of the methods for the Linked-list starts
+ *  The declaration can be found in the "linked_list.hpp header file
+ */
+
+//constructor to the linksed-list
+Linked_list::Linked_list() : head(nullptr), count(0) {}
+
+//This function adds a node to the end of the linked-list
+void Linked_list::append(std::string item_str)
 {
-  Todo_list_item *new_item = new Todo_list_item(item_str);
-  if (!head) //empty list
+  Node *new_item = new Node(item_str);
+  if (!head) //if the list is empty
   {
     head = new_item;
-    Todo_list::count++;
+    count++;
     std::cout << "Item added successfully!" << std::endl;
     return;
   }
 
-  Todo_list_item *last = head;
+  Node *last = head;
   while (last->next != nullptr) {
     last = last->next;
   }
   last->next = new_item;
-  Todo_list::count++;
+  count++;
   std::cout << "Item added successfully!" << std::endl;
   return;
 }
 
-void Todo_list::push(std::string item_str)
+//This function adds a node to the beginning of the list
+void Linked_list::push(std::string item_str)
 {
-  Todo_list_item *new_item = new Todo_list_item(item_str);
+  Node *new_item = new Node(item_str);
   new_item->next = head;
   head = new_item;
-  Todo_list::count++;
+  count++;
   std::cout << "Item added successfully!" << std::endl;
   return;
 }
 
-void Todo_list::insert(std::string item_str, int index)
+//This function adds a node to a specified index,, so a node can also be added to the middle of the list
+void Linked_list::insert(std::string item_str, int index)
 {
-  Todo_list_item *current = head;
-  if (Todo_list::count < index) {
+  Node *current = head;
+  if (Linked_list::count < index) {
         std::cout << "Index has exceeded current size of the list" << std::endl; //handle_error.index_exceeded();
         return;
   }
@@ -57,30 +73,32 @@ void Todo_list::insert(std::string item_str, int index)
   for (int i = 0; i == index - 1; i++)
       current = current->next;
   
-  Todo_list_item *new_item = new Todo_list_item(item_str);
+  Node *new_item = new Node(item_str);
   new_item->next = current->next;
   current->next = new_item;
-  Todo_list::count++;
+  count++;
   std::cout << "Item added at index " << index << "successfully!" << std::endl;
   return;
 }
 
-void Todo_list::printList()
+//This function displays all the items that are in the list
+void Linked_list::printList()
 {
   if (!head) {
     std::cout << "The list is empty!" << std::endl;
     return;
   }
-  Todo_list_item *current = head;
+  Node *current = head;
   int index = 0; //revisit
   while (current != nullptr) {
-    std::cout << "Task " << (index + 1) << ": " << current->print() << std::endl;
+    std::cout << index << "[ Task " << (index + 1) << ": " << current->print() << " ]" << std::endl;
     current = current->next;
     index++;
   }
 }
 
-void Todo_list::remove(int index)
+//This function removes a node from the list by index
+void Linked_list::remove(int index)
 {
   if (!head) {
     std::cout << "Cannot remove from an empty list" << std::endl; //handle_error.emptyList()
@@ -93,7 +111,7 @@ void Todo_list::remove(int index)
   }
   
   int i = 0;
-  Todo_list_item *current = head;
+  Node *current = head;
   while (i < index) {
     current = current->next;
     i++;
@@ -104,14 +122,15 @@ void Todo_list::remove(int index)
   std::cout << "Item deleted successfully" << std::endl;
 }
 
-void Todo_list::remove(std::string &item_str)
+//This function removes an item by value from a linked list
+void Linked_list::remove(std::string &item_str)
 {
   if (!head) {
     std::cout << "Cannot remove from an empty list" << std::endl; //handle_error.emptyList();
     return;
   }
 
-  Todo_list_item *current = head;
+  Node *current = head;
   while (current != nullptr) {
     if (current->value == item_str) {
       delete current->next;
@@ -121,7 +140,8 @@ void Todo_list::remove(std::string &item_str)
   }
 }
 
-void Todo_list::clearList()
+//This function clears the whole list
+void Linked_list::clearList()
 {
 	if (!head) {
 		std::cout << "The list is already empty" << std::endl;
@@ -144,4 +164,5 @@ printAll(): Done
 getItem(): postponed
 remove(): Done
 append(): Done
+clearList(): Done
 */
