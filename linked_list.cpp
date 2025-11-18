@@ -118,7 +118,7 @@ void Linked_list::remove(int index)
   }
   current->next = current->next->next;
   delete current->next; //garbage collection
-	Todo_list::count--;
+	count--;
   std::cout << "Item deleted successfully" << std::endl;
 }
 
