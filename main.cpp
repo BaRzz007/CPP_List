@@ -9,7 +9,7 @@ int main()
 	Linked_list course_list;
 
 	std::cout << "Attempting to add first test dataset" << std::endl;
-	std::string data_set = {
+	std::string data_set[] = {
 				"Tomato",
 				"Plantain",
 				"Toiletories",
@@ -49,7 +49,7 @@ int main()
 	std::cout << std:endl;
 
 	std::cout << "Begin testing with second dataset..." << std::endl;
-	std::string data_set_2 = {
+	std::string data_set_2[] = {
 				"Introduction to programming II",
 				"Philosophy",
 				"Mathematics",
@@ -78,6 +78,7 @@ int main()
   
   return (0);
 }
+
 
 
 
