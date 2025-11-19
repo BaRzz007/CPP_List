@@ -24,7 +24,10 @@ int main()
   market_list.remove(1); //remove node by index
   market_list.printList();
   std::cout << "" << std::endl;
-  market_list.remove("Buy some tomato"); //remove node by value
+
+  market_list.remove("Buy fried plantain"); //remove node by value
+	market_list.printList();
+	std::cout << "" << std::endl;
   market_list.clearList(); //clear the linked list
 
   market_list.remove(0); //attempt to delete item from an empty list returns an error stating that the list is empty

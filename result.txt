@@ -1,0 +1,33 @@
+Item added successfully!
+Item added successfully!
+Item added successfully!
+0[ Task 1: Buy some tomato ]
+1[ Task 2: Buy fried plantain ]
+2[ Task 3: Get a notepad for study ]
+
+Item added successfully!
+0[ Task 1: Priority: Restock on toiletories ]
+1[ Task 2: Buy some tomato ]
+2[ Task 3: Buy fried plantain ]
+3[ Task 4: Get a notepad for study ]
+
+Item added at index 3 successfully!
+0[ Task 1: Priority: Restock on toiletories ]
+1[ Task 2: Buy some tomato ]
+2[ Task 3: Buy fried plantain ]
+3[ Task 4: Get a brown bag ]
+4[ Task 5: Get a notepad for study ]
+
+Item deleted successfully
+0[ Task 1: Priority: Restock on toiletories ]
+1[ Task 2: Buy fried plantain ]
+2[ Task 3: Get a brown bag ]
+3[ Task 4: Get a notepad for study ]
+
+Item deleted successfully
+0[ Task 1: Priority: Restock on toiletories ]
+1[ Task 2: Get a brown bag ]
+2[ Task 3: Get a notepad for study ]
+
+The list is now cleared and empty
+Cannot remove from an empty list
