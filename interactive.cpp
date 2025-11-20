@@ -40,6 +40,26 @@ Session::run() {
 			    break;
 			default:
 			    Context context = get_context(token[0]);
+				if (context == nullptr) {
+					std::cout << “Command does not exit” << std::end;
+				}
+			    switch (token[1]) {
+					case ”append”:
+					    context.append(token[2]);
+					    break;
+					case “push”:
+					    context.push(token[2]);
+					    break;
+					case “insert”:
+					    context.insert(token[2], token[3]);
+					    break;
+					case “remove”:
+					    context.remove(token[2]); //context should check and call the right function
+					    break;
+					case “show_all”:
+					    context.printList();
+					    break;
+				}
 		}
 	}
 }
