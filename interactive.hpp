@@ -19,5 +19,6 @@ class Session {
     void help(std::string func=nullptr);
     void createList(std::string list);
     void deleteList(Linked_list list);
+    void lists(); //prints all contexts (lists) in the session
     void start_context(Context context);
 };
