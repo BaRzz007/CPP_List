@@ -21,4 +21,6 @@ class Session {
     void deleteList(Linked_list list);
     void lists(); //prints all contexts (lists) in the session
     void start_context(Context context);
+    bool exec(std::vector<std::string> tokens);
+    std::vector<std::string> parse(std::string);
 };
