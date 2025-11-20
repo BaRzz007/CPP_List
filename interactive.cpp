@@ -16,4 +16,14 @@ class Session::Context {
 		void help(std::string func) {}
 };
 
-Session::Session() : buffer(nullptr) {}
+Session::run() {
+	std::string buffer;
+	vector<std::string> tokens;
+	bool exit = false;
+	while (!exit) {
+		std::cout << prompt << ends;
+		buffer = input();
+		tokens = parse(buffer);
+		exit = exec(tokens);
+	}
+}
