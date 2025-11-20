@@ -38,7 +38,7 @@ Session::run() {
 			case “lists”:
 			    lists();
 			    break;
-			default:
+			default :
 			    Context context = get_context(token[0]);
 				if (context == nullptr) {
 					std::cout << “Command does not exit” << std::end;
