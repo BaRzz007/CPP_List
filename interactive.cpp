@@ -26,4 +26,15 @@ Session::run() {
 		tokens = parse(buffer);
 		exit = exec(tokens);
 	}
+
+	bool Session::exec(std::vector<std::string> token) {
+		switch (token[0]) {
+			case “create”:
+			    createList(token[1]);
+			    break;
+			case “delete”:
+			    deleteList(token[1]);
+			    break;
+		}
+	}
 }
