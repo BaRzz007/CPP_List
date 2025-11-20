@@ -35,6 +35,11 @@ Session::run() {
 			case “delete”:
 			    deleteList(token[1]);
 			    break;
+			case “lists”:
+			    lists();
+			    break;
+			default:
+			    Context context = get_context(token[0]);
 		}
 	}
 }
