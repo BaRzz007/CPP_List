@@ -14,9 +14,10 @@ class Session {
   private:
     class Context;
     std::unordered_map<std::string, Linked_list> lists;
-    void prompt; //while loop lives here
-    void input(); //contains the functions the session can execute
-    void help(std::string func);
-    void createList();
-    void deleteList();
+    std::string prompt = "=> "; //while loop lives here
+    std::string input(); //contains the functions the session can execute
+    void help(std::string func=nullptr);
+    void createList(std::string list);
+    void deleteList(Linked_list list);
+    void start_context(Context context);
 };
