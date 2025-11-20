@@ -1,7 +1,7 @@
 #include "interactive.cpp"
 
 
-class interactive::Context {
+class Session::Context {
 	private:
 		Linked_list list;
 		std::string context;
@@ -15,3 +15,5 @@ class interactive::Context {
 		void clearList() {}
 		void help(std::string func) {}
 };
+
+Session::Session() : buffer(nullptr) {}
