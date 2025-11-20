@@ -13,7 +13,7 @@ class Session {
 
   private:
     class Context;
-    std::unordered_map<std::string, Linked_list> lists;
+    std::unordered_map<std::string, Context> lists;
     std::string prompt = "=> "; //while loop lives here
     std::string input(); //contains the functions the session can execute
     void help(std::string func=nullptr);
