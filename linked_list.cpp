@@ -170,6 +170,7 @@ void Linked_list::clearList()
 {
 	if (!(*head)) {
 		std::cout << "The list is already empty" << std::endl;
+		return;
 	}
 	Node *current = *head;
 	Node *temp;
@@ -192,6 +193,7 @@ remove(): Done
 append(): Done
 clearList(): Done
 */
+
 
 
 
