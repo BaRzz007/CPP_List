@@ -80,13 +80,13 @@ bool Session::exec(std::vector<std::string> token) {
 				}
 		}
 	}
-	std::string Context::input() {
+	std::string Session::input() {
 		std::string line;
 		std::getline(std::cin, line);
 		return line;
 	}
 
-	std::vector<std::string> Context::parse(std::string buffer) {
+	std::vector<std::string> Session::parse(std::string buffer) {
 		std::vector<std::string> tokens;
 		std::size_t pos = 0;
 		std::size_t found = pos;
@@ -100,8 +100,12 @@ bool Session::exec(std::vector<std::string> token) {
 				found = buffer.substr(pos).find("\"");
 				token[i] = buffer.substr(pos, found);
 				pos += found + 2;
+				i++;
 				if (pos > buffer.length())
 					break;
+			} else {
+				token[i] = buffer.substr(pos, found);
+				pos += found + 1;
 			}
 		}
 	}
