@@ -18,17 +18,17 @@ class Session::Context {
 
 void Session::run() {
 	std::string buffer;
-	vector<std::string> tokens;
+	std::vector<std::string> tokens;
 	bool exit = false;
 	while (!exit) {
-		std::cout << prompt << ends;
+		std::cout << prompt;
 		buffer = input();
 		tokens = parse(buffer);
 		exit = exec(tokens);
 	}
 
-bool Session::exec(std::vector<std::string> token) {
-	switch (token[0]) {
+bool Session::exec(std::vector<std::string> tokens) {
+	switch (tokens[0]) {
 		case "create":
 			std::cout << "create test" << std::endl;
 			//createList(token[1]);
@@ -55,28 +55,28 @@ bool Session::exec(std::vector<std::string> token) {
 			}
 			return true;
 		default:
-		    Context context = get_context(token[0]);
+		    Context context = get_context(tokens[0]);
 			if (context == nullptr) {
-				std::cout << "Command does not exit" << std::end;
+				std::cout << "Command does not exit" << std::endl;
 			}
-		    switch (token[1]) {
+		    switch (tokens[1]) {
 				case "append":
-				    context.append(token[2]);
+				    context.append(tokens[2]);
 				    break;
 				case "push":
-				    context.push(token[2]);
+				    context.push(tokens[2]);
 				    break;
 				case "insert":
-				    context.insert(token[2], token[3]);
+				    context.insert(tokens[2], tokens[3]);
 				    break;
 				case "remove":
-				    context.remove(token[2]); //context should handle datatype conversion to call the right function
+				    context.remove(tokens[2]); //context should handle datatype conversion to call the right function
 				    break;
 				case "show_all":
 				    context.printList();
 				    break;
 				default:
-					std::cout << token[0] << ": " << token[1] << ": Unknown Command" << std::endl;
+					std::cout << tokens[0] << ": " << tokens[1] << ": Unknown Command" << std::endl;
 				}
 		}
 	}
@@ -98,13 +98,13 @@ bool Session::exec(std::vector<std::string> token) {
 			if (buffer.substr(pos)[0] == '"') {
 				pos++;
 				found = buffer.substr(pos).find("\"");
-				token[i] = buffer.substr(pos, found);
+				tokens[i] = buffer.substr(pos, found);
 				pos += found + 2;
 				i++;
 				if (pos > buffer.length())
 					break;
 			} else {
-				token[i] = buffer.substr(pos, found);
+				tokens[i] = buffer.substr(pos, found);
 				pos += found + 1;
 			}
 		}
