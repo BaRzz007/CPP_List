@@ -16,7 +16,7 @@ class Session::Context {
 		void help(std::string func) {}
 };
 
-Session::run() {
+void Session::run() {
 	std::string buffer;
 	vector<std::string> tokens;
 	bool exit = false;
@@ -27,39 +27,82 @@ Session::run() {
 		exit = exec(tokens);
 	}
 
-	bool Session::exec(std::vector<std::string> token) {
-		switch (token[0]) {
-			case “create”:
-			    createList(token[1]);
-			    break;
-			case “delete”:
-			    deleteList(token[1]);
-			    break;
-			case “lists”:
-			    lists();
-			    break;
-			default :
-			    Context context = get_context(token[0]);
-				if (context == nullptr) {
-					std::cout << “Command does not exit” << std::end;
+bool Session::exec(std::vector<std::string> token) {
+	switch (token[0]) {
+		case "create":
+			std::cout << "create test" << std::endl;
+			//createList(token[1]);
+			break;
+		case "delete":
+			std::cout << "delete test" << std::endl;
+			//deleteList(token[1]);
+			break;
+		case "lists":
+			std::cout << "lists test" << std::endl;
+		    //lists();
+		    break;
+		case "help":
+			std::cout << "help test" << std::endl;
+			/*if (token.size() > 1) {
+				help(token[1]);
+			} else {
+				help();
+			}*/
+			break;
+		case "exit":
+			for (const auto& [name, context] : this.lists) {
+				context.clearList();
+			}
+			return true;
+		default:
+		    Context context = get_context(token[0]);
+			if (context == nullptr) {
+				std::cout << "Command does not exit" << std::end;
+			}
+		    switch (token[1]) {
+				case "append":
+				    context.append(token[2]);
+				    break;
+				case "push":
+				    context.push(token[2]);
+				    break;
+				case "insert":
+				    context.insert(token[2], token[3]);
+				    break;
+				case "remove":
+				    context.remove(token[2]); //context should handle datatype conversion to call the right function
+				    break;
+				case "show_all":
+				    context.printList();
+				    break;
+				default:
+					std::cout << token[0] << ": " << token[1] << ": Unknown Command" << std::endl;
 				}
-			    switch (token[1]) {
-					case ”append”:
-					    context.append(token[2]);
-					    break;
-					case “push”:
-					    context.push(token[2]);
-					    break;
-					case “insert”:
-					    context.insert(token[2], token[3]);
-					    break;
-					case “remove”:
-					    context.remove(token[2]); //context should check and call the right function
-					    break;
-					case “show_all”:
-					    context.printList();
-					    break;
-				}
+		}
+	}
+	std::string Context::input() {
+		std::string line;
+		std::getline(std::cin, line);
+		return line;
+	}
+
+	std::vector<std::string> Context::parse(std::string buffer) {
+		std::vector<std::string> tokens;
+		std::size_t pos = 0;
+		std::size_t found = pos;
+
+		int i = 0;
+		while (found != std::string::npos) {
+			found = buffer.substr(pos).find(" ");
+
+			if (buffer.substr(pos)[0] == '"') {
+				pos++;
+				found = buffer.substr(pos).find("\"");
+				token[i] = buffer.substr(pos, found);
+				pos += found + 2;
+				if (pos > buffer.length())
+					break;
+			}
 		}
 	}
 }
