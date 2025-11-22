@@ -45,7 +45,7 @@ int main()
   market_list.clearList(); //clear the linked list
 
   market_list.remove(0); //attempt to delete item from an empty list returns an error stating that the list is empty
-	std::cout << std:endl;
+	std::cout << std::endl;
 
 	std::cout << "Begin testing with second dataset..." << std::endl;
 	std::string data_set_2[] = {
@@ -77,6 +77,7 @@ int main()
   
   return (0);
 }
+
 
 
 
