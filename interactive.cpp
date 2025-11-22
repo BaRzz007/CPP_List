@@ -69,7 +69,7 @@ bool Session::exec(std::vector<std::string> tokens) {
 				    context.push(tokens[2]);
 				    break;
 				case "insert":
-					int idx = stoi(token[2]);
+					int idx = std::stoi(tokens[2]);
 				    context.insert(tokens[3], idx);
 				    break;
 				case "remove":
