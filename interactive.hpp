@@ -25,3 +25,5 @@ class Session {
     bool exec(std::vector<std::string> tokens);
     std::vector<std::string> parse(std::string);
 };
+
+#endif //INTERACTIVE_H
