@@ -20,7 +20,7 @@ class Session {
     void help(std::string func=nullptr);
     void createList(std::string list);
     void deleteList(Linked_list list);
-    void lists(); //prints all contexts (lists) in the session
+    void showAll(); //prints all contexts (lists) in the session
     Context get_context(std::string cmd);
     bool exec(std::vector<std::string> tokens);
     std::vector<std::string> parse(std::string);
