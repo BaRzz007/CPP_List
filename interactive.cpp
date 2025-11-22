@@ -3,7 +3,7 @@
 
 class Session::Context {
 	private:
-		Linked_list list;
+		Linked_list *list;
 		std::string context;
 	public:
 		Context(std::string context) : list(new Linked_list), context(context) {}
