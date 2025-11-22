@@ -13,6 +13,7 @@ class Session::Context {
 		void remove(std::string item_str) {}
 		void remove(int index) {}
 		void clearList() {}
+		void printList() {}
 		void help(std::string func) {}
 };
 
@@ -51,7 +52,7 @@ bool Session::exec(std::vector<std::string> tokens) {
 			}*/
 			break;
 		case "exit":
-			for (const auto& [name, context] : this.lists) {
+			for (const auto& [name, context] : this->lists) {
 				context.clearList();
 			}
 			return true;
@@ -68,7 +69,8 @@ bool Session::exec(std::vector<std::string> tokens) {
 				    context.push(tokens[2]);
 				    break;
 				case "insert":
-				    context.insert(tokens[2], tokens[3]);
+					int idx = stoi(token[2]);
+				    context.insert(tokens[3], idx);
 				    break;
 				case "remove":
 				    context.remove(tokens[2]); //context should handle datatype conversion to call the right function
@@ -78,9 +80,12 @@ bool Session::exec(std::vector<std::string> tokens) {
 				    break;
 				default:
 					std::cout << tokens[0] << ": " << tokens[1] << ": Unknown Command" << std::endl;
-				}
-		}
+			}
 	}
+	
+	return false;
+}
+
 	std::string Session::input() {
 		std::string line;
 		std::getline(std::cin, line);
@@ -103,11 +108,12 @@ bool Session::exec(std::vector<std::string> tokens) {
 				pos += found + 2;
 				i++;
 				if (pos > buffer.length())
-					break;
+					return tokens;
 			} else {
 				tokens[i] = buffer.substr(pos, found);
 				pos += found + 1;
 			}
 		}
+		return tokens;
 	}
 }
