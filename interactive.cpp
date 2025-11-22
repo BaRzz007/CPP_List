@@ -58,7 +58,7 @@ bool Session::exec(std::vector<std::string> tokens) {
 			return true;
 		default:
 		    Context context = get_context(tokens[0]);
-			if (context == nullptr) {
+			if (!context) {
 				std::cout << "Command does not exit" << std::endl;
 			}
 		    switch (tokens[1]) {
