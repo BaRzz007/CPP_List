@@ -26,6 +26,7 @@ void Session::run() {
 		tokens = parse(buffer);
 		exit = exec(tokens);
 	}
+}
 
 bool Session::exec(std::vector<std::string> tokens) {
 	switch (tokens[0]) {
