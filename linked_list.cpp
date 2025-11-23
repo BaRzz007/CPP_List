@@ -92,7 +92,7 @@ void Linked_list::printList()
   Node *current = *head;
   int index = 0; //revisit
   while (current != nullptr) {
-    std::cout << index << "[ Task " << (index + 1) << ": " << current->print() << " ]" << std::endl;
+    std::cout << index << "[ Item " << (index + 1) << ": " << current->print() << " ]" << std::endl;
     current = current->next;
     index++;
   }
@@ -193,6 +193,7 @@ remove(): Done
 append(): Done
 clearList(): Done
 */
+
 
 
 
