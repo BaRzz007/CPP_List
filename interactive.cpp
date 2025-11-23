@@ -140,6 +140,10 @@ std::string Session::input() {
 
 std::vector<std::string> Session::parse(std::string buffer) {
 	std::vector<std::string> tokens;
+	if (buffer.empty()) {
+		tokens = {};
+		return tokens;
+	}
 	std::stringstream ss(buffer);
 	std::string token;
 	char quote = '\0';
