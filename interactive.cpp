@@ -1,119 +1,157 @@
 #include "interactive.hpp"
+#include <sstream>
 
-
-class Session::Context {
-	private:
-		Linked_list *list;
-		std::string context;
-	public:
-		Context(std::string context) : list(new Linked_list), context(context) {}
-		void append(std::string item_str) {}
-		void insert(std::string item_str, int index) {}
-		void push(std::string item_str) {}
-		void remove(std::string item_str) {}
-		void remove(int index) {}
-		void clearList() {}
-		void printList() {}
-		void help(std::string func) {}
-};
+Session::Context::Context(std::string context_name) : list(std::make_unique<Linked_list>()), context_name(context_name) {}
+void Session::Context::append(std::string item_str) { list->append(item_str); }
+void Session::Context::insert(std::string item_str, int index) { list->insert(item_str, index); }
+void Session::Context::push(std::string item_str) { list->push(item_str); }
+void Session::Context::remove(std::string item_str) { list->remove(item_str); }
+void Session::Context::remove(int index) { list->remove(index); }
+void Session::Context::clearList() { list->clearList(); }
+void Session::Context::printList() { list->printList(); }
 
 void Session::run() {
 	std::string buffer;
 	std::vector<std::string> tokens;
-	bool exit = false;
-	while (!exit) {
+	while (true) {
 		std::cout << prompt;
 		buffer = input();
 		tokens = parse(buffer);
-		exit = exec(tokens);
+		if (exec(tokens)) {
+			break;
+		}
 	}
 }
 
 bool Session::exec(std::vector<std::string> tokens) {
-	switch (tokens[0]) {
-		case "create":
-			std::cout << "create test" << std::endl;
-			//createList(token[1]);
-			break;
-		case "delete":
-			std::cout << "delete test" << std::endl;
-			//deleteList(token[1]);
-			break;
-		case "lists":
-			std::cout << "lists test" << std::endl;
-		    //lists();
-		    break;
-		case "help":
-			std::cout << "help test" << std::endl;
-			/*if (token.size() > 1) {
-				help(token[1]);
-			} else {
-				help();
-			}*/
-			break;
-		case "exit":
-			for (const auto& [name, context] : this->lists) {
-				context.clearList();
-			}
-			return true;
-		default:
-		    Context context = get_context(tokens[0]);
-			if (!context) {
-				std::cout << "Command does not exit" << std::endl;
-			}
-		    switch (tokens[1]) {
-				case "append":
-				    context.append(tokens[2]);
-				    break;
-				case "push":
-				    context.push(tokens[2]);
-				    break;
-				case "insert":
-					int idx = std::stoi(tokens[2]);
-				    context.insert(tokens[3], idx);
-				    break;
-				case "remove":
-				    context.remove(tokens[2]); //context should handle datatype conversion to call the right function
-				    break;
-				case "show_all":
-				    context.printList();
-				    break;
-				default:
-					std::cout << tokens[0] << ": " << tokens[1] << ": Unknown Command" << std::endl;
-			}
+
+	if (tokens.empty()) {
+		return false;
 	}
-	
+
+	std::string command = tokens[0];
+
+	if (command == "create") {
+		if (tokens.size() > 1) createList(tokens[1]);
+		else std::cout << "Usage: create <list_name>" << std::endl;
+	} else if (command == "delete") {
+		// Not implemented
+		std::cout << "delete test" << std::endl;
+	} else if (command == "lists") {
+		showAll();
+	} else if (command == "help") {
+		help(tokens.size() > 1 ? tokens[1] : "");
+	} else if (command == "exit") {
+		for (auto& pair : this->lists) {
+			pair.second.clearList();
+		}
+		return true;
+	} else {
+		auto it = lists.find(command);
+		if (it == lists.end()) {
+			std::cout << "List '" << command << "' not found." << std::endl;
+			return false;
+		}
+
+		Context& context = it->second;
+		if (tokens.size() < 2) {
+			std::cout << "No command provided for list '" << command << "'" << std::endl;
+			return false;
+		}
+
+		std::string list_cmd = tokens[1];
+		if (list_cmd == "append") {
+			if (tokens.size() > 2) context.append(tokens[2]);
+			else std::cout << "Usage: " << command << " append <item>" << std::endl;
+		} else if (list_cmd == "push") {
+			if (tokens.size() > 2) context.push(tokens[2]);
+			else std::cout << "Usage: " << command << " push <item>" << std::endl;
+		} else if (list_cmd == "insert") {
+			if (tokens.size() > 3) {
+				try {
+					int idx = std::stoi(tokens[2]);
+					context.insert(tokens[3], idx);
+				} catch (const std::invalid_argument& ia) {
+					std::cout << "Invalid index provided for insert." << std::endl;
+				}
+			} else {
+				std::cout << "Usage: " << command << " insert <index> <item>" << std::endl;
+			}
+		} else if (list_cmd == "remove") {
+			if (tokens.size() > 2) {
+				try {
+					int idx = std::stoi(tokens[2]);
+					context.remove(idx);
+				} catch (const std::invalid_argument& ia) {
+					context.remove(tokens[2]);
+				}
+			} else {
+				std::cout << "Usage: " << command << " remove <index_or_item>" << std::endl;
+			}
+		} else if (list_cmd == "show_all") {
+			context.printList();
+		} else {
+			std::cout << command << ": " << list_cmd << ": Unknown Command" << std::endl;
+		}
+	}
 	return false;
 }
 
-	std::string Session::input() {
-		std::string line;
-		std::getline(std::cin, line);
-		return line;
+void Session::createList(std::string list_name) {
+	if (lists.find(list_name) == lists.end()) {
+		lists.emplace(list_name, Context(list_name));
+		std::cout << "List '" << list_name << "' created." << std::endl;
+	} else {
+		std::cout << "List '" << list_name << "' already exists." << std::endl;
 	}
+}
 
-	std::vector<std::string> Session::parse(std::string buffer) {
-		std::vector<std::string> tokens;
-		std::size_t pos = 0;
-		std::size_t found = pos;
+void Session::showAll() {
+	if (lists.empty()) {
+		std::cout << "No lists have been created." << std::endl;
+		return;
+	}
+	std::cout << "Available lists:" << std::endl;
+	for (const auto& pair : lists) {
+		std::cout << "- " << pair.first << std::endl;
+	}
+}
 
-		int i = 0;
-		while (found != std::string::npos) {
-			found = buffer.substr(pos).find(" ");
+void Session::help(std::string func) {
+	std::cout << "Interactive Session Help:" << std::endl;
+	std::cout << "Commands:" << std::endl;
+	std::cout << "  create <list_name>    - Creates a new list." << std::endl;
+	std::cout << "  lists                 - Shows all created lists." << std::endl;
+	std::cout << "  <list_name> <command> - Executes a command on a list." << std::endl;
+	std::cout << "    append <item>" << std::endl;
+	std::cout << "    push <item>" << std::endl;
+	std::cout << "    insert <index> <item>" << std::endl;
+	std::cout << "    remove <index_or_item>" << std::endl;
+	std::cout << "    show_all" << std::endl;
+	std::cout << "  help                  - Shows this help message." << std::endl;
+	std::cout << "  exit                  - Exits the interactive session." << std::endl;
+}
 
-			if (buffer.substr(pos)[0] == '"') {
-				pos++;
-				found = buffer.substr(pos).find("\"");
-				tokens[i] = buffer.substr(pos, found);
-				pos += found + 2;
-				i++;
-				if (pos > buffer.length())
-					return tokens;
-			} else {
-				tokens[i] = buffer.substr(pos, found);
-				pos += found + 1;
-			}
+std::string Session::input() {
+	std::string line;
+	std::getline(std::cin, line);
+	return line;
+}
+
+std::vector<std::string> Session::parse(std::string buffer) {
+	std::vector<std::string> tokens;
+	std::stringstream ss(buffer);
+	std::string token;
+	char quote = '\0';
+
+	while (ss >> std::ws) { // consume leading whitespace
+		if (ss.peek() == '\"' || ss.peek() == '\'') {
+			quote = ss.get();
+			std::getline(ss, token, quote);
+		} else {
+			ss >> token;
 		}
-		return tokens;
+		tokens.push_back(token);
 	}
+	return tokens;
 }

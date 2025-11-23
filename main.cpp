@@ -1,10 +1,21 @@
+#include <string>
+#include <iostream>
 #include "linked_list.hpp"
 #include "interactive.hpp"
 
 
-int main()
+int main(int argc, char **argv)
 {
-  Linked_list market_list; //creates new Linked-List
+
+	if (argc > 1 && std::string(argv[1]) == "interactive") {
+		
+		Session session;
+	 	session.run();
+	 	return (0);
+
+	}
+
+  	Linked_list market_list; //creates new Linked-List
 	Linked_list course_list;
 
 	std::cout << "Attempting to add first test dataset" << std::endl;
@@ -77,9 +88,3 @@ int main()
   
   return (0);
 }
-
-
-
-
-
-
